@@ -1,57 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Patient List</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-image: url('https://images.unsplash.com/photo-1542281286-9e0a16bb7366');
-            background-size: cover;
-            background-position: center;
-            font-family: Arial, sans-serif;
-            padding: 40px;
-        }
-        .form-container {
-            background-color: rgba(255, 255, 255, 0.95);
-            max-width: 600px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Patient List</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      font-family: 'Arial', sans-serif;
+      padding-top: 40px;
+    }
+
+    .content-wrapper {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .table th, .table td {
+      vertical-align: middle;
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: bold;
+      margin-bottom: 30px;
+    }
+
+    .btn-sm {
+      margin: 2px;
+    }
+  </style>
 </head>
-<body class="container mt-5">
-    <h2>Patient List</h2>
-    <table class="table table-bordered table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Age</th>
-                <th>Glucose</th>
-                <th>Prediction</th>
-                <th>Actions</th>
-            </tr>
+<body>
+  <div class="container">
+    <div class="content-wrapper">
+      <h2>Patient List</h2>
+      <table class="table table-bordered table-hover table-striped">
+        <thead class="table-dark text-center">
+          <tr>
+            <th>ID</th>
+            <th>Age</th>
+            <th>Glucose</th>
+            <th>Prediction</th>
+            <th>Actions</th>
+          </tr>
         </thead>
         <tbody>
-            {% for p in patients %}
-            <tr>
-                <td>{{ p[0] }}</td>
-                <td>{{ p[1] }}</td>
-                <td>{{ p[2] }}</td>
-                <td>{{ 'Positive' if p[3] == 1 else 'Negative' }}</td>
-                <td>
-                    <a href="{{ url_for('patient_info', patient_id=p[0]) }}" class="btn btn-info btn-sm">View</a>
-                    <form action="{{ url_for('delete_patient', patient_id=p[0]) }}" method="POST" style="display:inline;">
-                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            {% endfor %}
+          {% for p in patients %}
+          <tr>
+            <td>{{ p[0] }}</td>
+            <td>{{ p[1] }}</td>
+            <td>{{ p[2] }}</td>
+            <td>
+              <span class="badge bg-{{ 'danger' if p[3] == 1 else 'success' }}">
+                {{ 'Positive' if p[3] == 1 else 'Negative' }}
+              </span>
+            </td>
+            <td class="text-center">
+              <a href="{{ url_for('patient_info', patient_id=p[0]) }}" class="btn btn-info btn-sm">View</a>
+              <a href="{{ url_for('modify_patient', patient_id=p[0]) }}" class="btn btn-warning btn-sm">Modify</a>
+              <form action="{{ url_for('delete_patient', patient_id=p[0]) }}" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
         </tbody>
-    </table>
-    <a href="{{ url_for('predict') }}" class="btn btn-primary">Back to Prediction</a>
-    <a href="{{ url_for('logout') }}" class="btn btn-outline-secondary float-end">Logout</a>
+      </table>
 
+      <div class="d-flex justify-content-between mt-4">
+        <a href="{{ url_for('predict') }}" class="btn btn-primary">Back to Prediction</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-outline-secondary">Logout</a>
+      </div>
+    </div>
+  </div>
 </body>
 </html>
+
+

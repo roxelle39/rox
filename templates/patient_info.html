@@ -1,44 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Patient Details</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-image: url('https://images.unsplash.com/photo-1542281286-9e0a16bb7366');
-            background-size: cover;
-            background-position: center;
-            font-family: Arial, sans-serif;
-            padding: 40px;
-        }
-        .form-container {
-            background-color: rgba(255, 255, 255, 0.95);
-            max-width: 600px;
-            margin: auto;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.2);
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>Patient Details</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+      background-size: cover;
+      background-position: center;
+      min-height: 100vh;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 15px;
+    }
+
+    .card {
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 12px;
+    }
+
+    .btn-back {
+      margin-top: 20px;
+    }
+  </style>
 </head>
-<body class="container mt-5">
-    <h2>Patient Details</h2>
-    <ul class="list-group">
-        <li class="list-group-item"><strong>ID:</strong> {{ patient[0] }}</li>
-        <li class="list-group-item"><strong>Pregnancies:</strong> {{ patient[1] }}</li>
-        <li class="list-group-item"><strong>Glucose:</strong> {{ patient[2] }}</li>
-        <li class="list-group-item"><strong>Blood Pressure:</strong> {{ patient[3] }}</li>
-        <li class="list-group-item"><strong>Skin Thickness:</strong> {{ patient[4] }}</li>
-        <li class="list-group-item"><strong>Insulin:</strong> {{ patient[5] }}</li>
-        <li class="list-group-item"><strong>BMI:</strong> {{ patient[6] }}</li>
-        <li class="list-group-item"><strong>Diabetes Pedigree Function:</strong> {{ patient[7] }}</li>
-        <li class="list-group-item"><strong>Age:</strong> {{ patient[8] }}</li>
-        <li class="list-group-item"><strong>Prediction:</strong> {{ 'Diabetic' if patient[9] == 1 else 'Not Diabetic' }}</li>
-    </ul>
-    <br>
-    <a href="{{ url_for('patients_list') }}" class="btn btn-secondary">Back to the list</a>
+<body>
+  <div class="container" style="max-width: 700px;">
+    <div class="card shadow-lg">
+      <div class="card-header bg-primary text-white text-center">
+        <h3 class="mb-0">Patient Details</h3>
+      </div>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong>Pregnancies:</strong> {{ patient[1] }}</li>
+          <li class="list-group-item"><strong>Glucose:</strong> {{ patient[2] }}</li>
+          <li class="list-group-item"><strong>Blood Pressure:</strong> {{ patient[3] }}</li>
+          <li class="list-group-item"><strong>Skin Thickness:</strong> {{ patient[4] }}</li>
+          <li class="list-group-item"><strong>Insulin:</strong> {{ patient[5] }}</li>
+          <li class="list-group-item"><strong>BMI:</strong> {{ patient[6] }}</li>
+          <li class="list-group-item"><strong>Diabetes Pedigree Function:</strong> {{ patient[7] }}</li>
+          <li class="list-group-item"><strong>Age:</strong> {{ patient[8] }}</li>
+          <li class="list-group-item">
+            <strong>Prediction:</strong>
+            {% if patient[9] == 1 %}
+              <span class="text-danger fw-bold">Diabetic</span>
+            {% else %}
+              <span class="text-success fw-bold">Not Diabetic</span>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="text-center btn-back">
+      <a href="{{ url_for('patients_list') }}" class="btn btn-secondary">Back to the list</a>
+    </div>
+  </div>
 </body>
 </html>
-
-
 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modify Patient</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            padding: 30px 15px;
+        }
+
+        .form-container {
+            background-color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2 class="text-center mb-4">Modify Patient Data</h2>
+        <form method="POST">
+            <div class="mb-3">
+                <label for="Pregnancies" class="form-label">Pregnancies</label>
+                <input type="number" class="form-control" id="Pregnancies" name="Pregnancies" value="{{ patient[1] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="Glucose" class="form-label">Glucose</label>
+                <input type="number" class="form-control" id="Glucose" name="Glucose" value="{{ patient[2] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="BloodPressure" class="form-label">Blood Pressure</label>
+                <input type="number" class="form-control" id="BloodPressure" name="BloodPressure" value="{{ patient[3] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="SkinThickness" class="form-label">Skin Thickness</label>
+                <input type="number" class="form-control" id="SkinThickness" name="SkinThickness" value="{{ patient[4] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="Insulin" class="form-label">Insulin</label>
+                <input type="number" class="form-control" id="Insulin" name="Insulin" value="{{ patient[5] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="BMI" class="form-label">BMI</label>
+                <input type="number" step="any" class="form-control" id="BMI" name="BMI" value="{{ patient[6] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="DiabetesPedigreeFunction" class="form-label">Diabetes Pedigree Function</label>
+                <input type="number" step="any" class="form-control" id="DiabetesPedigreeFunction" name="DiabetesPedigreeFunction" value="{{ patient[7] }}" required>
+            </div>
+            <div class="mb-3">
+                <label for="Age" class="form-label">Age</label>
+                <input type="number" class="form-control" id="Age" name="Age" value="{{ patient[8] }}" required>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-4">
+                <a href="{{ url_for('patients_list') }}" class="btn btn-secondary">Back to the list</a>
+                <button type="submit" class="btn btn-primary">Update Patient</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+
