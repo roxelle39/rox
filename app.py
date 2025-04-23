@@ -191,14 +191,13 @@ def logout():
     session.clear()
     return redirect(url_for('login'))
 
-# Placeholder for forgot password
-@app.route('/forgot_password')
-def forgot_password():
-    return "Forgot password page under construction."
+
+
+
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True)
+    app.run(debug=True
 
 
 
